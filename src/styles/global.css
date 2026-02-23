@@ -1,0 +1,77 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg: #f8f9fa;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f1f3f5;
+  --color-border: #dee2e6;
+  --color-border-focus: #228be6;
+
+  --color-primary: #1971c2;
+  --color-primary-hover: #1864ab;
+  --color-primary-light: #e7f5ff;
+
+  --color-success: #2f9e44;
+  --color-success-bg: #ebfbee;
+  --color-success-border: #8ce99a;
+
+  --color-error: #c92a2a;
+  --color-error-bg: #fff5f5;
+  --color-error-border: #ffc9c9;
+
+  --color-warning: #e67700;
+  --color-warning-bg: #fff9db;
+  --color-warning-border: #ffe066;
+
+  --color-text: #212529;
+  --color-text-secondary: #495057;
+  --color-text-muted: #868e96;
+
+  --color-accent: #0ca678;
+  --color-accent-light: #e6fcf5;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.05);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,.1);
+
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+button {
+  font-family: var(--font);
+  cursor: pointer;
+}
+
+input, select, textarea {
+  font-family: var(--font);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

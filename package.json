@@ -1,0 +1,30 @@
+{
+  "name": "dom-onboarding-wizard",
+  "version": "1.0.0",
+  "description": "DOM (Digital Office Manager) Onboarding Wizard",
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "nodemon server/index.js",
+    "client:dev": "vite --port 5173",
+    "build": "vite build",
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "csurf": "^1.11.0",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "imap": "^0.8.19",
+    "nanoid": "^3.3.7",
+    "sanitize-filename": "^1.6.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vite": "^5.0.10"
+  }
+}

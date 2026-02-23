@@ -1,0 +1,67 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.required {
+  color: var(--color-error);
+}
+
+.help {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.error {
+  font-size: 12px;
+  color: var(--color-error);
+  font-weight: 500;
+}
+
+.field :global(input),
+.field :global(select),
+.field :global(textarea) {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  outline: none;
+  appearance: none;
+}
+
+.field :global(input):focus,
+.field :global(select):focus,
+.field :global(textarea):focus {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(34,139,230,.12);
+}
+
+.hasError :global(input),
+.hasError :global(select),
+.hasError :global(textarea) {
+  border-color: var(--color-error);
+}
+
+.field :global(select) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23868e96' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+
+.field :global(textarea) {
+  resize: vertical;
+  min-height: 72px;
+}

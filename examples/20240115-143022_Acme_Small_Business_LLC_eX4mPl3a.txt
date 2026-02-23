@@ -1,0 +1,161 @@
+============================================================
+  DOM (Digital Office Manager) — Onboarding Configuration
+============================================================
+  Generated: 2024-01-15T19:30:22.000Z
+
+SECTION 1: TENANT IDENTITY
+------------------------------------------------------------
+  Organization Name : Acme Small Business LLC
+  Contact Name      : Jane Smith
+  Contact Email     : jane@acmesmallbusiness.com
+  Phone             : +1 (555) 234-5678
+  Timezone          : America/Indiana/Indianapolis
+
+SECTION 2: EMAIL / IMAP CONFIGURATION
+------------------------------------------------------------
+  Provider          : gmail
+  IMAP Host         : imap.gmail.com
+  IMAP Port         : 993
+  TLS Enabled       : Yes
+  Username          : office@acmesmallbusiness.com
+  Password          : ******
+  Mailbox Folder    : INBOX
+  IMAP Test Passed  : Yes
+  User IMAP Consent : Yes — user acknowledged mailbox access
+
+SECTION 3: EMAIL CLASSIFICATION — TOAST TYPES
+------------------------------------------------------------
+  [01] Invoice / Bill Received
+       Description    : Emails containing invoices, bills, or payment requests from vendors or suppliers.
+       Action         : Summarize and notify
+       Urgency        : 3 / 5
+       Examples       : Invoice #1234 from Acme Corp, Bill due from utility provider
+
+  [02] Payment Confirmation
+       Description    : Confirmations that a payment was received or processed successfully.
+       Action         : Route to folder/label
+       Urgency        : 2 / 5
+       Examples       : Your payment of $500 has been processed, Receipt from PayPal
+
+  [03] Appointment Request
+       Description    : Requests to schedule a meeting, call, or in-person appointment.
+       Action         : Summarize and notify
+       Urgency        : 3 / 5
+       Examples       : Can we meet Tuesday at 2pm?, Booking request from client
+
+  [04] Appointment Confirmation
+       Description    : Confirmations of a scheduled appointment or meeting.
+       Action         : Route to folder/label
+       Urgency        : 2 / 5
+       Examples       : Your appointment is confirmed for March 5th at 10am
+
+  [05] Customer Inquiry
+       Description    : General questions or information requests from existing or potential customers.
+       Action         : Auto-reply (templated)
+       Urgency        : 3 / 5
+       Examples       : Do you offer weekend appointments?, What are your rates?
+
+  [06] Customer Complaint
+       Description    : Expressions of dissatisfaction or formal complaints from customers.
+       Action         : Flag urgent
+       Urgency        : 5 / 5
+       Examples       : I am unhappy with my recent order, Your service was unacceptable
+
+  [07] New Order / Purchase
+       Description    : Notifications that a new order or purchase has been placed.
+       Action         : Summarize and notify
+       Urgency        : 4 / 5
+       Examples       : Order #9876 received, New Shopify order from Jane Smith
+
+  [08] Shipping / Delivery Update
+       Description    : Updates on the status of an outgoing or incoming shipment.
+       Action         : Route to folder/label
+       Urgency        : 2 / 5
+       Examples       : Your package has shipped, Delivery scheduled for tomorrow
+
+  [09] Vendor / Supplier Communication
+       Description    : Messages from vendors, suppliers, or contractors about products or services.
+       Action         : Summarize and notify
+       Urgency        : 2 / 5
+       Examples       : New product catalog available, Supplier price update Q2
+
+  [10] Urgent / Time-Sensitive
+       Description    : Messages explicitly marked urgent or requiring an immediate response.
+       Action         : Flag urgent
+       Urgency        : 5 / 5
+       Examples       : URGENT: Contract needs signature today, Time-sensitive: respond by 5pm
+
+  [11] Legal / Compliance Notice
+       Description    : Notices from legal counsel, regulatory bodies, or compliance-related senders.
+       Action         : Flag urgent
+       Urgency        : 5 / 5
+       Examples       : Notice of violation, Contract amendment required, Audit request
+
+  [12] HR / Staffing
+       Description    : Messages related to employees, job applications, payroll, or HR matters.
+       Action         : Summarize and notify
+       Urgency        : 3 / 5
+       Examples       : Job application from candidate, Payroll processing reminder
+
+  [13] Marketing / Promotional (Inbound)
+       Description    : Unsolicited marketing emails, newsletters, or promotional offers received.
+       Action         : Route to folder/label
+       Urgency        : 1 / 5
+       Examples       : Spring sale ends Sunday!, You have been selected for a special offer
+
+  [14] Newsletter / Subscription
+       Description    : Newsletters or content emails the organization has subscribed to.
+       Action         : Route to folder/label
+       Urgency        : 1 / 5
+       Examples       : Your weekly industry digest, Monthly Chamber of Commerce newsletter
+
+  [15] System / Automated Notification
+       Description    : Automated messages from software tools, platforms, or monitoring systems.
+       Action         : Route to folder/label
+       Urgency        : 2 / 5
+       Examples       : Your backup completed successfully, New login detected on your account
+
+  [16] Social Media Notification
+       Description    : Notification emails generated by social media platforms.
+       Action         : Do nothing
+       Urgency        : 1 / 5
+       Examples       : Someone mentioned you on LinkedIn, New follower on Instagram
+
+  [17] Referral / Partnership Inquiry
+       Description    : Messages about potential partnerships, referrals, or collaboration opportunities.
+       Action         : Summarize and notify
+       Urgency        : 3 / 5
+       Examples       : I would like to refer a client to you, Partnership proposal attached
+
+  [18] Review / Feedback Request
+       Description    : Requests asking the organization to leave or respond to a review.
+       Action         : Summarize and notify
+       Urgency        : 2 / 5
+       Examples       : Please review your recent experience, Your Google review was flagged
+
+  [19] Out of Office / Auto-reply
+       Description    : Automated out-of-office replies received from email recipients.
+       Action         : Do nothing
+       Urgency        : 1 / 5
+       Examples       : I am out of the office until Monday, On vacation, returning Jan 10
+
+  [20] Internal Team Communication
+       Description    : Messages between internal team members, staff, or organization departments.
+       Action         : Summarize and notify
+       Urgency        : 3 / 5
+       Examples       : Team standup notes, Please review the attached proposal
+
+  Unknown Message Handling: Summarize and notify
+
+SECTION 4: OPERATIONAL SETTINGS
+------------------------------------------------------------
+  Processing Schedule         : Every 15 minutes
+  Max Emails Per Run          : 50
+  Lookback Days (initial run) : 7
+  Notification Email          : jane@acmesmallbusiness.com
+  Notification Methods        : Email
+  Pilot System Consent        : Yes — user acknowledged pilot status
+
+============================================================
+  END OF CONFIGURATION
+============================================================

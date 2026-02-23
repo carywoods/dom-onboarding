@@ -1,0 +1,40 @@
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.header {
+  padding: 28px 32px 20px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-alt);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  max-width: 560px;
+}
+
+.body {
+  padding: 28px 32px;
+}
+
+@media (max-width: 540px) {
+  .header {
+    padding: 20px 18px 16px;
+  }
+  .body {
+    padding: 20px 18px;
+  }
+}
