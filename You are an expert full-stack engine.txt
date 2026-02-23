@@ -1,0 +1,129 @@
+You are an expert full-stack engineer and security-conscious product builder.
+
+Build a DOM (Digital Office Manager) onboarding wizard as a small web app. The goal is to collect IMAP connection details, validate them via a live connection test, collect 20 classification “toast types” via a guided form, collect a few operational settings, then WRITE ALL USER ANSWERS TO A SERVER-SIDE TEXT FILE.
+
+ABSOLUTE CONSTRAINTS:
+- Do NOT use Supabase (no Supabase auth, DB, storage, or APIs).
+- Do NOT use any external database or hosted backend.
+- Persist onboarding output ONLY by writing files to the server filesystem.
+- This is onboarding only. Do NOT build an admin panel.
+- The app must be very thorough, with validation, clear steps, and helpful UI copy.
+- The app must store the completed onboarding submission to a plain text file on the server filesystem.
+- The app must also store a JSON copy of the same data in a separate file (for future automation).
+- The app must NEVER log secrets to console or to client-side storage.
+- The app must include an explicit user acknowledgement that IMAP credentials will be used to access the mailbox for DOM processing.
+- The app must support multiple tenants (multiple onboarding runs). Each completed run writes unique files.
+
+Tech choices:
+- Use Node.js + Express for backend (local filesystem persistence).
+- Frontend: either plain HTML/CSS + vanilla JS OR a small React SPA (your choice). Keep dependencies minimal.
+- Use no external paid services, no external DB, no Supabase.
+- Use environment variable DOM_ONBOARDING_OUTPUT_DIR for output directory (default ./onboarding_output).
+- Provide a single command to run the app in dev (npm scripts).
+- Provide clear instructions in README.
+
+App behavior:
+1) Wizard Step 1: Tenant Identity
+   - Fields:
+     - organization_name (required)
+     - primary_contact_name (required)
+     - primary_contact_email (required, validate email format)
+     - phone_optional
+     - timezone (default America/Indiana/Indianapolis)
+   - Provide UI copy that this will be used for labeling and support only.
+
+2) Wizard Step 2: Email Provider + IMAP Basics
+   - Provider selection:
+     - Gmail
+     - Microsoft 365 / Outlook
+     - Yahoo
+     - iCloud
+     - “Other / Custom IMAP”
+   - If provider is NOT “Other,” prefill recommended IMAP host/port/TLS defaults (but allow editing).
+   - Fields:
+     - imap_host (required)
+     - imap_port (required, integer)
+     - imap_tls (required boolean; default true)
+     - username (required)
+     - password (required; treat as secret)
+     - mailbox_folder (default “INBOX”)
+   - Provide help text for “app passwords” and 2FA.
+   - Required checkbox:
+     - “I understand DOM will access this mailbox via IMAP to process messages.”
+
+3) Wizard Step 3: IMAP Connection Test (required gate)
+   - Implement server endpoint POST /api/test-imap that:
+     - receives host/port/tls/username/password/folder
+     - attempts an IMAP connection (use a reputable Node IMAP library)
+     - attempts to list folders OR select the specified mailbox
+     - returns a clear success or failure message
+   - Do NOT persist the password during testing unless the user completes onboarding.
+   - UI must block advancing until test succeeds.
+   - Show user-friendly error hints (wrong password, tls mismatch, host blocked, etc).
+
+4) Wizard Step 4: 20 Toast Types (classification configuration)
+   - Present exactly 20 categories, each with:
+     - category_name (predefined default label, editable)
+     - category_description (pre-filled, editable)
+     - examples (optional textarea)
+     - desired_DOM_action (dropdown)
+         options: “Auto-reply (templated)”, “Summarize and notify”, “Route to folder/label”, “Flag urgent”, “Do nothing”
+     - urgency_level (1-5)
+     - allowed_senders (optional list)
+     - blocked_senders (optional list)
+   - Provide a “Use Recommended Defaults” button to populate sensible defaults for typical small businesses.
+   - Include a control for unknown messages:
+     - “Anything outside these 20 categories should…” with options:
+       “Ask for clarification”, “Summarize and notify”, “Do nothing”
+   - Validate that all 20 have a selected action and urgency.
+
+5) Wizard Step 5: Operational Settings
+   - Fields:
+     - processing_schedule: dropdown [“Every 5 minutes”, “Every 15 minutes”, “Hourly”, “Manual only”]
+     - max_emails_per_run (default 50)
+     - lookback_days_for_initial_run (default 7)
+     - notification_email (default primary_contact_email)
+     - notification_method: checkbox list [Email, Slack (placeholder only), SMS (placeholder only)]
+   - Required acknowledgement:
+     - “I understand this is a pilot system and results should be reviewed.”
+
+6) Wizard Step 6: Review + Submit
+   - Review page must mask secrets (password shown as ******).
+   - Submit posts to POST /api/submit-onboarding.
+   - Server writes two files:
+     a) Human-readable TEXT file
+     b) Machine-readable JSON file
+   - Filename format:
+     - {timestamp}_{sanitized_org_name}_{randomShortId}.txt
+     - {timestamp}_{sanitized_org_name}_{randomShortId}.json
+     - timestamp in YYYYMMDD-HHMMSS local server time
+   - Text file format must be clean and readable with labeled sections and line breaks.
+   - JSON must contain full structure including the 20 categories.
+   - Ensure output directory exists; create if missing.
+
+Security requirements:
+- Never store password in browser localStorage/sessionStorage.
+- Do not log secrets on client or server.
+- Server must validate and sanitize all inputs.
+- Prevent directory traversal in filenames.
+- Ensure secrets are only in memory and written only to output files upon final submission.
+- Add a warning in README about securing the output directory and file permissions.
+- Include CSRF protection (or same-site POST strategy) appropriate for a small app.
+
+Non-goals:
+- No billing.
+- No admin panel.
+- No customer management UI beyond onboarding.
+- No email sending from onboarding; only config capture and IMAP test.
+
+Deliverables:
+- Complete code for backend and frontend.
+- README with:
+  - setup instructions
+  - environment variable usage
+  - how to run
+  - where files are written
+  - how IMAP test works
+- Provide example output .txt and .json in a /examples folder using fake data (NO real credentials).
+
+Make it clean, minimal, and robust.
